@@ -51,7 +51,7 @@ npm run build
 # Start the optimized Node Backend
 npm run start
 ```
-*Note: The `npm run start` script automatically serves the compiled `dist/` directory securely via Express.*
+*Note: The `npm run start` script automatically serves the compiled `dist/` directory securely via Express. By default the application runs on port `3000`. If deploying to a platform like Heroku that dynamically assigns a port, simply update `const PORT = 3000;` to `const PORT = process.env.PORT || 3000;` in `server.ts` before pushing.*
 
 ## Admin Access
 
