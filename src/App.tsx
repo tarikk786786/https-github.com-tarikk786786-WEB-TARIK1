@@ -179,9 +179,11 @@ export default function App() {
 
   // Trigger auto-detect on mount
   useEffect(() => {
-    if (view === 'customer' && !pickup.lat) {
+    // Only call detectLocation once on mount if view is customer and lat is 0
+    if (view === 'customer' && pickup.lat === 0 && !isDetectingLocation) {
       detectLocation();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [view]);
 
   // Real-time State
@@ -222,6 +224,13 @@ export default function App() {
         setConfig(await configRes.json());
       } catch (e) {
         console.error("API Error:", e);
+        // Fallback for pricing if server is down during dev
+        if (!pricing) {
+          setPricing({
+            mini: { label: 'Mini', base: 20, perkm: 10 },
+            sedan: { label: 'Sedan', base: 20, perkm: 12 },
+          });
+        }
       }
     };
     fetchData();
