@@ -1,0 +1,8 @@
+{
+  "name": "UMATAXI",
+  "description": "Premium Ride-Booking Platform with Real-time GPS and Minimalist Interface.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": []
+}
